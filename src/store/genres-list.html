@@ -1,0 +1,10 @@
+<h3>Browse Genres</h3>
+
+<p>
+    Select from {{ctrl.count}} genres:
+</p>
+<ul class="list-group">
+	<li class="list-group-item" ng-repeat="genre in ctrl.genres">
+		<a href="#/store/browse?genres={{genre}}">{{genre}}</a>
+	</li>
+</ul>

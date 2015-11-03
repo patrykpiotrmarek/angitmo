@@ -30,6 +30,7 @@ gulp.task('transpile', function () {
 gulp.task('assets', function () {
 	return gulp.src([
 		paths.src + '/**/*.html',
+		paths.src + '/**/*.css',
 		paths.src + '/**/*.png'
 	])
 		.pipe(gulp.dest(paths.build));
