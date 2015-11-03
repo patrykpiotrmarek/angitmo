@@ -5,6 +5,6 @@
 </p>
 <ul class="list-group">
 	<li class="list-group-item" ng-repeat="genre in ctrl.genres">
-		<a href="#/store/browse?genres={{genre}}">{{genre}}</a>
+		<browse-by-genre ng-model="genre" />
 	</li>
 </ul>
