@@ -1,4 +1,7 @@
-import { moduleName } from './app.module' 
+import { default as musicStoreModule } from './app.module'
+
+export const controllerName = "HomeController";
+
 class HomeController{
   constructor(){
   }
@@ -6,6 +9,6 @@ class HomeController{
 
 HomeController.$inject = [];
 
-angular.module(moduleName, [HomeController]);
+musicStoreModule.controller(controllerName, HomeController);
 
 export default HomeController;

@@ -1,5 +1,5 @@
-let moduleName = 'MusicStore';
+export const moduleName = 'MusicStore';
 
-angular.module(moduleName, ['ngRoute', 'ngMessages']);
+let musicStoreModule = angular.module(moduleName, ['ngRoute']);
 
-export default moduleName;
+export default musicStoreModule;

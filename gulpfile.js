@@ -4,12 +4,12 @@ var clean = require('gulp-clean');
 var gutil = require('gulp-util');
 var requirejs = require('gulp-requirejs');
 var uglify = require('gulp-uglify');
-var server = require('gulp-express');
-
+var http = require('gulp-connect');
 
 var paths = {
 	src: 'src',
-	build: 'build'
+	build: 'build',
+	bower: 'bower_components'
 };
 
 gulp.task('clean', function () {
@@ -32,18 +32,32 @@ gulp.task('html', function () {
 		.pipe(gulp.dest(paths.build));
 })
 
-gulp.task('build', ['transpile', 'html'], function (done) {
+gulp.task('bower', function () {
+	return gulp.src([paths.bower + "/**/*.js", paths.bower + '/**/*.css'])
+		.pipe(gulp.dest(paths.build + '/bower_components'));
+});
+
+gulp.task('build', ['transpile', 'html', 'bower'], function (done) {
     return requirejs({
 		name: "bootstrap",
 		baseUrl: paths.build,
 		out: 'build.js'
 	})
-        .pipe(uglify())
+	//.pipe(uglify())
         .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('server', function () {
-    return server.run({
-        file: 'app.js'
-    });
+gulp.task('watch', function(){
+    gulp.watch([paths.src+'/**/*'], ['build']);
+});
+
+gulp.task('http', function () {
+	http.server({
+		root: 'build',
+		livereload: true
+	});
+});
+
+gulp.task('default', ['clean'], function () {
+	gulp.start(['build', 'http', 'watch']);
 });

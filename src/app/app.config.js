@@ -1,10 +1,11 @@
-import { moduleName } from './app.module';
+import { default as musicStoreModule } from './app.module'
+import { controllerName as homeControllerName} from './home.controller'
 
 function config($routeProvider) {
 	$routeProvider
 		.when('/', {
-			templateUrl: 'home.html',
-			controller: 'homeController',
+			templateUrl: 'app/home.html',
+			controller: homeControllerName,
 			controllerAs: 'ctrl'
 		})
 		.otherwise({ redirectTo: '/' });
@@ -12,4 +13,5 @@ function config($routeProvider) {
 
 config.$inject = ['$routeProvider'];
 
-angular.module(moduleName).config(config);
+musicStoreModule
+	.config(config);
