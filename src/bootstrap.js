@@ -1,5 +1,5 @@
-import { moduleName } from './app/app.module';
-import {} from './app/home.controller';
-import {} from './app/app.config';
+import {} from './app/main';
 
-angular.bootstrap(document, [moduleName]);
+import { moduleName as appModuleName } from './app/app.module';
+
+angular.bootstrap(document, [appModuleName]);

@@ -27,17 +27,29 @@ gulp.task('transpile', function () {
 		.pipe(gulp.dest(paths.build));
 });
 
-gulp.task('html', function () {
-	return gulp.src([paths.src + '/**/*.html'])
+gulp.task('assets', function () {
+	return gulp.src([
+		paths.src + '/**/*.html',
+		paths.src + '/**/*.png'
+	])
 		.pipe(gulp.dest(paths.build));
 })
 
 gulp.task('bower', function () {
-	return gulp.src([paths.bower + "/**/*.js", paths.bower + '/**/*.css'])
+	return gulp.src([
+		paths.bower + "/**/*.js",
+		paths.bower + '/**/*.css',
+
+		paths.bower + '/**/*.eot',
+		paths.bower + '/**/*.svg',
+		paths.bower + '/**/*.ttf',
+		paths.bower + '/**/*.woff',
+		paths.bower + '/**/*.woff2'
+	])
 		.pipe(gulp.dest(paths.build + '/bower_components'));
 });
 
-gulp.task('build', ['transpile', 'html', 'bower'], function (done) {
+gulp.task('build', ['transpile', 'assets', 'bower'], function (done) {
     return requirejs({
 		name: "bootstrap",
 		baseUrl: paths.build,
@@ -47,8 +59,12 @@ gulp.task('build', ['transpile', 'html', 'bower'], function (done) {
         .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('watch', function(){
-    gulp.watch([paths.src+'/**/*'], ['build']);
+gulp.task('rebuild',['clean'], function(){
+	gulp.start('build');
+});
+
+gulp.task('watch', function () {
+    gulp.watch([paths.src + '/**/*'], ['build']);
 });
 
 gulp.task('http', function () {
@@ -59,5 +75,5 @@ gulp.task('http', function () {
 });
 
 gulp.task('default', ['clean'], function () {
-	gulp.start(['build', 'http', 'watch']);
+	gulp.start(['build', 'assets', 'watch']);
 });

@@ -1,23 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title>Home MusicStore</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 </head>
+
 <body>
-    <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">ASP.NET MVC Music Store</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown">
+                        <a href="/store" data-toggle="dropdown" class="dropdown-toggle">Store <b class="caret"></b></a>
+                        <ul class="dropdown-menu" ng-controller="GenresController as ctrl">
+                            <li ng-repeat="genre in ctrl.genres">
+                                <a href="/store/browse?genre={{genre}}">{{genre}}</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/store">More...</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/account/register" id="registerLink">Register</a></li>
+                    <li><a href="/account/login" id="loginLink">Log in</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="jumbotron">
+            <h1>ASP.NET MVC Music Store</h1>
+            <img src="/app/home-showcase.png">
+        </div>
+
         <div ng-view="" class="view"></div>
     </div>
+    <footer class="navbar navbar-fixed-bottom navbar-default text-center">
+        <p><a href="http://angularmusicstore.pl/">angularmusicstore.pl</a></p>
+        <small><a href="/admin/storeManager">admin</a></small>
+    </footer>
 
+    <script src="bower_components/requirejs/require.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/requirejs/require.js" ></script>
     <script src="build.js"></script>
     <script>
-        (function(){
+        $(function(){
             require(['bootstrap']);
-        }());
+        });
     </script>
 </body>
+
 </html>

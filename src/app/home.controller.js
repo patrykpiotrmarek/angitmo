@@ -1,14 +1,10 @@
-import { default as musicStoreModule } from './app.module'
+import { default as appModule } from './app.module';
 
-export const controllerName = "HomeController";
-
+export const controllerName = "HomeController"
 class HomeController{
-  constructor(){
-  }
+	
 }
+HomeController.inject = [];
 
-HomeController.$inject = [];
+appModule.controller(controllerName, HomeController);
 
-musicStoreModule.controller(controllerName, HomeController);
-
-export default HomeController;
