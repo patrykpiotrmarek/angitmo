@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Home MusicStore</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+    <div class="container">
+        <div ng-view="" class="view"></div>
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/requirejs/require.js" ></script>
+    <script src="build/build.js"></script>
+    <script>
+        (function(){
+            require(['bootstrap']);
+        }());
+    </script>
+</body>
+</html>
