@@ -1,4 +1,5 @@
-import { default as appModule } from './app.module'
+/* global angular */
+import { default as appModuleName } from './module'
 import { controllerName as homeControllerName } from './home.controller'
 import { controllerName as genresListConrollerName } from '../store/genres-list.controller'
 
@@ -19,4 +20,6 @@ function config($routeProvider) {
 
 config.$inject = ['$routeProvider'];
 
-appModule.config(config);
+angular
+	.module(appModuleName)
+	.config(config);

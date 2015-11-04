@@ -1,10 +1,13 @@
-import { default as appModule } from './app.module';
+/* global angular */
+import { default as appModuleName } from './module';
 
 export const controllerName = "HomeController"
-class HomeController{
-	
+class HomeController {
+
 }
 HomeController.inject = [];
 
-appModule.controller(controllerName, HomeController);
+angular
+	.module(appModuleName)
+	.controller(controllerName, HomeController);
 

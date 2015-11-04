@@ -1,4 +1,5 @@
-import { default as storeModule } from './store.module';
+/* global angular */
+import { default as storeModuleName } from './module';
 
 export const serviceName = "GenresService";
 
@@ -19,4 +20,6 @@ class GenresService {
 let factory = () => new GenresService();
 factory.$inject = [];
 
-storeModule.service(serviceName, factory);
+angular
+	.module(storeModuleName)
+	.service(serviceName, factory);

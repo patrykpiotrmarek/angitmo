@@ -1,4 +1,5 @@
-import { default as storeModule } from './store.module';
+/* global angular */
+import { default as storeModuleName } from './module';
 import { serviceName as genresServiceName } from './genres.service';
 
 export const controllerName = "GenresListController";
@@ -12,11 +13,13 @@ class GenresListController {
 	get genres() {
 		return this[_genres];
 	}
-	
-	get count(){
+
+	get count() {
 		return this.genres.length;
 	}
 }
 GenresListController.$inject = [genresServiceName];
 
-storeModule.controller(controllerName, GenresListController);
+angular
+	.module(storeModuleName)
+	.controller(controllerName, GenresListController);

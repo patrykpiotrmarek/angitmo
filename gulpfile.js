@@ -52,7 +52,7 @@ gulp.task('bower', function () {
 
 gulp.task('build', ['transpile', 'assets', 'bower'], function (done) {
     return requirejs({
-		name: "bootstrap",
+		name: "main",
 		baseUrl: paths.build,
 		out: 'build.js'
 	})
@@ -76,5 +76,5 @@ gulp.task('http', function () {
 });
 
 gulp.task('default', ['clean'], function () {
-	gulp.start(['build', 'assets', 'watch']);
+	gulp.start(['build', 'assets', 'watch', 'http']);
 });

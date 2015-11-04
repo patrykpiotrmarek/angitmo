@@ -1,4 +1,5 @@
-import { default as storeModule } from './store.module';
+/* global angular */
+import { default as storeModuleName } from './module';
 
 export const directiveName = "browseByGenre";
 
@@ -15,4 +16,6 @@ class BrowseByGenreDirective {
 let directiveFactory = () => new BrowseByGenreDirective();
 directiveFactory.$inject = [];
 
-storeModule.directive(directiveName, directiveFactory);
+angular
+	.module(storeModuleName)
+	.directive(directiveName, directiveFactory);
