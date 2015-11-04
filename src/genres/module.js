@@ -1,5 +1,5 @@
 /* global angular */
-const moduleName = "store";
+const moduleName = "genres";
 
 angular.module(moduleName, []);
 

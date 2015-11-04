@@ -1,6 +1,6 @@
 /* global angular */
 import { default as appModuleName } from './module'
-import { serviceName as genresServiceName } from '../store/genres.service';
+import { serviceName as genresServiceName } from '../genres/genres.service';
 
 export const controllerName = "GenresLinksController";
 

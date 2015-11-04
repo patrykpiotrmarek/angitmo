@@ -1,24 +1,41 @@
 /* global angular */
 import { default as appModuleName } from './module'
-import { controllerName as homeControllerName } from './home.controller'
-import { controllerName as genresListConrollerName } from '../store/genres-list.controller'
+import { controllerName as homeControllerName, albumsResolver as homeControllerAlbumsResolver } from './home.controller'
+import { controllerName as genresListConrollerName } from '../genres/genres-list.controller'
+import { controllerName as albumsListControllerName, albumsResolver as albumsListControllerResolver } from '../albums/albums-list.controller';
 
-function config($routeProvider) {
+function config($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
 			templateUrl: 'app/home.html',
 			controller: homeControllerName,
-			controllerAs: 'ctrl'
+			controllerAs: 'ctrl',
+			resolve: {
+				albums: homeControllerAlbumsResolver
+			}
 		})
-		.when('/store', {
-			templateUrl: 'store/genres-list.html',
+		.when('/albums/genre/:genre', {
+			templateUrl: 'albums/albums-list.html',
+			controller: albumsListControllerName,
+			controllerAs: 'ctrl',
+			resolve: {
+				albums: albumsListControllerResolver
+			}
+		})
+		.when('/genres', {
+			templateUrl: 'genres/genres-list.html',
 			controller: genresListConrollerName,
 			controllerAs: 'ctrl'
 		})
 		.otherwise({ redirectTo: '/' });
+
+	$locationProvider.html5Mode({
+		enabled: true,
+		requireBase: false
+	});
 }
 
-config.$inject = ['$routeProvider'];
+config.$inject = ['$routeProvider', '$locationProvider'];
 
 angular
 	.module(appModuleName)

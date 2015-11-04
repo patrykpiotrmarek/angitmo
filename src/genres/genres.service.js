@@ -1,5 +1,5 @@
 /* global angular */
-import { default as storeModuleName } from './module';
+import { default as genresModuleName } from './module';
 
 export const serviceName = "GenresService";
 
@@ -21,5 +21,5 @@ let factory = () => new GenresService();
 factory.$inject = [];
 
 angular
-	.module(storeModuleName)
+	.module(genresModuleName)
 	.service(serviceName, factory);

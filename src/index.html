@@ -23,14 +23,14 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
                     <li class="dropdown">
-                        <a href="#/store" data-toggle="dropdown" class="dropdown-toggle">Store <b class="caret"></b></a>
+                        <a href="/store" data-toggle="dropdown" class="dropdown-toggle">Store <b class="caret"></b></a>
                         <ul class="dropdown-menu" ng-controller="GenresLinksController as ctrl">
                             <li ng-repeat="genre in ctrl.genres | limitTo:9">
-                                <browse-by-genre ng-model="genre" />
+                                <albums-by-genre-link ng-model="genre" />
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#/store">More...</a>
+                                <a href="/genres">More...</a>
                             </li>
                         </ul>
                     </li>

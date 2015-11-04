@@ -1,5 +1,5 @@
 /* global angular */
-import { default as storeModuleName } from './module';
+import { default as genresModuleName } from './module';
 import { serviceName as genresServiceName } from './genres.service';
 
 export const controllerName = "GenresListController";
@@ -21,5 +21,5 @@ class GenresListController {
 GenresListController.$inject = [genresServiceName];
 
 angular
-	.module(storeModuleName)
+	.module(genresModuleName)
 	.controller(controllerName, GenresListController);
