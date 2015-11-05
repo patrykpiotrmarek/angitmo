@@ -30,12 +30,17 @@ class AlbumsService {
 		this[_filter] = $filter('filter');
 	}
 
+	getById(id) {
+		var matching = this[_filter](albums, { id: Number.parseInt(id, 10) }, true);
+		return matching.length ? matching[0] : {};
+	}
+
 	getTop(count) {
 		return this[_limitTo](albums, count);
 	}
 
 	getByGenre(genre) {
-		return this[_filter](albums, { genre: genre });
+		return this[_filter](albums, { genre: genre }, true);
 	}
 }
 let serviceFactory = ($filter) => new AlbumsService($filter);

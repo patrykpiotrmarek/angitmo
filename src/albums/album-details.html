@@ -1,0 +1,24 @@
+<div class="container body-content">
+
+	<h2>{{ctrl.album.name}}</h2>
+
+	<p>
+		<img alt="{{ctrl.album.name}}" src="/images/placeholder.png">
+	</p>
+
+	<div id="album-details">
+		<p>
+			<em>Genre:</em> {{ctrl.album.genre}}
+		</p>
+		<p>
+			<em>Artist:</em> {{ctrl.album.artist}}
+		</p>
+		<p>
+			<em>Price:</em>
+			<label>{{ctrl.album.price | currency}}</label>
+		</p>
+		<p class="button">
+			<a href="/shopping-cart/add/{{ctrl.album.id}}">Add to cart</a>
+		</p>
+	</div>
+</div>

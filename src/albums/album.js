@@ -1,9 +1,10 @@
 export default class Album {
-	constructor(id, artist, name, genre) {
+	constructor(id, artist, name, genre, price) {
 		this.id = id;
 		this.artist = artist;
 		this.name = name || artist;
 		this.genre = genre || "Metal";
+		this.price = price || 0;
 	}
 
 	get title() {

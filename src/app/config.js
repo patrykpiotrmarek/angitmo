@@ -3,11 +3,12 @@ import { default as appModuleName } from './module'
 import { controllerName as homeControllerName, albumsResolver as homeControllerAlbumsResolver } from './home.controller'
 import { controllerName as genresListConrollerName } from '../genres/genres-list.controller'
 import { controllerName as albumsListControllerName, albumsResolver as albumsListControllerResolver } from '../albums/albums-list.controller';
+import { controllerName as albumDetailsControllerName, albumsResolver as albumDetailsResolver } from '../albums/album-details.controller';
 
 function config($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
-			templateUrl: 'app/home.html',
+			templateUrl: '/app/home.html',
 			controller: homeControllerName,
 			controllerAs: 'ctrl',
 			resolve: {
@@ -15,15 +16,24 @@ function config($routeProvider, $locationProvider) {
 			}
 		})
 		.when('/albums/genre/:genre', {
-			templateUrl: 'albums/albums-list.html',
+			templateUrl: '/albums/albums-list.html',
 			controller: albumsListControllerName,
 			controllerAs: 'ctrl',
 			resolve: {
 				albums: albumsListControllerResolver
 			}
 		})
+		.when('/album/:id', {
+			templateUrl:'/albums/album-details.html',
+			controller: albumDetailsControllerName,
+			controllerAs:'ctrl',
+			resolve: {
+				album: albumDetailsResolver
+			}
+
+		})
 		.when('/genres', {
-			templateUrl: 'genres/genres-list.html',
+			templateUrl: '/genres/genres-list.html',
 			controller: genresListConrollerName,
 			controllerAs: 'ctrl'
 		})
