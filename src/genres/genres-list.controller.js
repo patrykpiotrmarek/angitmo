@@ -7,7 +7,7 @@ export const controllerName = "GenresListController";
 let _genres = Symbol();
 class GenresListController {
 	constructor(genresService) {
-		this[_genres] = genresService.getGenres();
+		this[_genres] = genresService.getGenresQuery().query();
 	}
 
 	get genres() {

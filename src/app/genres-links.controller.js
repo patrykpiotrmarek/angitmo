@@ -8,7 +8,7 @@ let _genres = Symbol();
 
 class GenresLinksController {
   constructor(genresService) {
-    this[_genres] = genresService.getGenres();
+    this[_genres] = genresService.getGenresQuery().query();
   }
 
   get genres() {

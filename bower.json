@@ -3,7 +3,7 @@
   "description": "",
   "main": "app.js",
   "authors": [
-    "Hubert Bielski"
+    "Patryk Marek"
   ],
   "license": "ISC",
   "moduleType": [],
@@ -20,6 +20,7 @@
     "angular": "~1.4.7",
     "bootstrap": "~3.3.5",
     "angular-route": "1.4.7",
+    "angular-resource": "1.4.x",
     "requirejs": "~2.1.20"
   }
 }

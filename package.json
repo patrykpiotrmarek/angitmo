@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Hubert Bielski",
+  "author": "Patryk Marek",
   "license": "ISC",
   "devDependencies": {
     "babel": "6.0.2",
