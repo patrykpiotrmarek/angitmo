@@ -1,10 +1,7 @@
 <section>
-    <h3 ng-if="ctrl.genre">
-        <em>{{ctrl.genre}}</em> Albums
-    </h3>
     <ul id="album-list" class="list-unstyled" ng-if="ctrl.albums">
         <li class="col-lg-2 col-md-2 col-sm-2 col-xs-4 container" 
-             ng-repeat="album in ctrl.albums | filter: {Genre: {Name: ctrl.genre}}: true  | limitTo: ctrl.limit">
+             ng-repeat="album in ctrl.albums">
             <a href="/album/{{album.AlbumId}}">
                 <img alt="{{album.Title}}" src="/images/placeholder.png">
                 <h5 class="control-label">{{album.Title}}</h4>

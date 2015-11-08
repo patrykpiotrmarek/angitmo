@@ -7,12 +7,11 @@ export const controllerName = "HomeController"
 class HomeController {
 	constructor(albums) {
 		this.albums = albums;
-		this.limit = 6;
 	}
 }
 
 export let albumsResolver = (albumsService) => {
-	return albumsService.getAlbums();
+	return albumsService.getTopAlbums(6);
 };
 albumsResolver.$inject = [albumsServiceName];
 
