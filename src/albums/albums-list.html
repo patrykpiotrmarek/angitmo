@@ -1,11 +1,15 @@
 <section>
-    <div class="container-fluid" ng-if="ctrl.albums.length">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-repeat="album in ctrl.albums">
-            <a href="/album/{{album.id}}">
-                <img alt="{{album.title}}" src="/images/placeholder.png">
-                <h4>{{album.title}}</h4>
+    <h3 ng-if="ctrl.genre">
+        <em>{{ctrl.genre}}</em> Albums
+    </h3>
+    <ul id="album-list" class="list-unstyled" ng-if="ctrl.albums">
+        <li class="col-lg-2 col-md-2 col-sm-2 col-xs-4 container" 
+             ng-repeat="album in ctrl.albums | filter: {Genre: {Name: ctrl.genre}}: true  | limitTo: ctrl.limit">
+            <a href="/album/{{album.AlbumId}}">
+                <img alt="{{album.Title}}" src="/images/placeholder.png">
+                <h5 class="control-label">{{album.Title}}</h4>
             </a>
-        </div>
-    </div>
-    <h3 ng-if="!ctrl.albums.length" class="text-center">No albums found!</h3>
+        </li>
+    </ul>
+    <h3 ng-if="!ctrl.albums" class="text-center">No albums found!</h3>
 </section>

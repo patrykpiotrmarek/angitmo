@@ -4,18 +4,26 @@ import { default as albumsServiceName } from './albums.service';
 
 export const controllerName = "AlbumsListController";
 
+let albums;
+let genre;
+
 class AlbumsListController {
-	constructor(albums) {
+	constructor(albums, genre) {
 		this.albums = albums;
+		this.genre = genre;
 	}
 }
-AlbumsListController.$inject = ['albums'];
+AlbumsListController.$inject = ['albums', 'genre'];
 
-export let albumsResolver = (albumsService, $route) => {
-	return albumsService.getByGenre($route.current.params.genre);
-
+export let albumsResolver = (albumsService) => {
+	return albumsService.getAlbums();
 };
-albumsResolver.$inject = [albumsServiceName, '$route'];
+albumsResolver.$inject = [albumsServiceName];
+
+export let genreResolver = ($route) => {
+	return $route.current.params.genre;
+};
+genreResolver.$inject = ['$route'];
 
 angular
 	.module(albumsModuleName)

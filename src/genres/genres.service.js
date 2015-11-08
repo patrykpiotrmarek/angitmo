@@ -4,7 +4,6 @@ import { serviceName as dataSourceServiceName } from '../data-source/data-source
 
 export const serviceName = "GenresService";
 
-let genres;
 let resource;
 let jsonPath;
 
@@ -14,10 +13,11 @@ class GenresService {
 		this.jsonPath = dataSourceService.getDataSource("genres.json");
 	}
 	
-	getGenresQuery() {
-		return this.resource(this.jsonPath, {}, {
+	getGenres() {
+		let genres = this.resource(this.jsonPath, {}, {
       		query: { method: 'GET', params: {}, isArray: true }
-		});
+		}).query()
+		return genres;
 	}
 }
 

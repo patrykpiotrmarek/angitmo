@@ -1,24 +1,24 @@
-<div class="container body-content">
+<div class="container body-content" ng-repeat="album in ctrl.albums | filter: {AlbumId: ctrl.albumId}: true">
 
-	<h2>{{ctrl.album.name}}</h2>
+	<h2>{{album.Title}}</h2>
 
 	<p>
-		<img alt="{{ctrl.album.name}}" src="/images/placeholder.png">
+		<img alt="{{album.Title}}" src="/images/placeholder.png">
 	</p>
 
 	<div id="album-details">
 		<p>
-			<em>Genre:</em> {{ctrl.album.genre}}
+			<em>Genre:</em> {{album.Genre.Name}}
 		</p>
 		<p>
-			<em>Artist:</em> {{ctrl.album.artist}}
+			<em>Artist:</em> {{album.Artist.Name}}
 		</p>
 		<p>
 			<em>Price:</em>
-			<label>{{ctrl.album.price | currency}}</label>
+			<label>{{album.Price | currency}}</label>
 		</p>
 		<p class="button">
-			<a href="/shopping-cart/add/{{ctrl.album.id}}">Add to cart</a>
+			<a href="/shopping-cart/add/{{album.AlbumId}}">Add to cart</a>
 		</p>
 	</div>
 </div>

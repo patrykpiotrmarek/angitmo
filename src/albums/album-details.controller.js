@@ -5,16 +5,22 @@ import { default as albumsServiceName } from './albums.service';
 export const controllerName = "AlbumDetailsController";
 
 class AlbumDetailsController {
-	constructor(album) {
-		this.album = album;
+	constructor(albums, albumId) {
+		this.albums = albums;
+		this.albumId = albumId;
 	}
 }
-AlbumDetailsController.$inject = ['album'];
+AlbumDetailsController.$inject = ['albums', 'albumId'];
 
-export let albumsResolver = (albumsService, $route) => {
-	return albumsService.getById($route.current.params.id);
+export let albumsResolver = (albumsService) => {
+	return albumsService.getAlbums();
 };
-albumsResolver.$inject = [albumsServiceName, '$route'];
+albumsResolver.$inject = [albumsServiceName];
+
+export let albumIdResolver = ($route) => {
+	return parseInt($route.current.params.id);
+};
+albumIdResolver.$inject = ['$route'];
 
 angular
 	.module(albumModuleName)

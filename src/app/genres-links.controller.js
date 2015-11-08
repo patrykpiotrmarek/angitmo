@@ -4,15 +4,11 @@ import { serviceName as genresServiceName } from '../genres/genres.service';
 
 export const controllerName = "GenresLinksController";
 
-let _genres = Symbol();
+let genres;
 
 class GenresLinksController {
   constructor(genresService) {
-    this[_genres] = genresService.getGenresQuery().query();
-  }
-
-  get genres() {
-    return this[_genres];
+    this.genres = genresService.getGenres();
   }
 }
 

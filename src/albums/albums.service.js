@@ -1,50 +1,25 @@
 /* global $filter */
 /* global angular */
 import { default as albumsModuleName } from './module';
-import { default as Album } from './album';
+import { serviceName as dataSourceServiceName } from '../data-source/data-source.service'
 
 const serviceName = "albumsService";
 
-const albums = [
-	new Album(1, "Slayer"),
-	new Album(2, "Moonspell"),
-	new Album(3, "Możdżer"),
-	new Album(4, "Madball"),
-	new Album(5, "Terror"),
-	new Album(6, "Arkangel"),
-	new Album(7, "Death"),
-	new Album(8, "Antrax"),
-	new Album(9, "Born from Pain"),
-	new Album(10, "zao"),
-	new Album(11, "wolf down"),
-	new Album(12, "mushroomhead"),
-	new Album(13, "The Dillinger Escape Plan"),
-	new Album(14, "Toxic Bonkers")
-];
-
-let _limitTo = Symbol();
-let _filter = Symbol();
 class AlbumsService {
-	constructor($filter) {
-		this[_limitTo] = $filter('limitTo');
-		this[_filter] = $filter('filter');
+	constructor($resource, dataSourceService) {
+	    this.resource = $resource;
+		this.jsonPath = dataSourceService.getDataSource("albums.json");
 	}
 
-	getById(id) {
-		var matching = this[_filter](albums, { id: Number.parseInt(id, 10) }, true);
-		return matching.length ? matching[0] : {};
-	}
-
-	getTop(count) {
-		return this[_limitTo](albums, count);
-	}
-
-	getByGenre(genre) {
-		return this[_filter](albums, { genre: genre }, true);
+	getAlbums() {
+		let albums = this.resource(this.jsonPath, {}, {
+			query: { method: 'GET', params: {}, isArray: true }
+		}).query();
+		return albums;
 	}
 }
-let serviceFactory = ($filter) => new AlbumsService($filter);
-serviceFactory.$inject = ['$filter'];
+let serviceFactory = ($resource, dataSourceService) => new AlbumsService($resource, dataSourceService);
+serviceFactory.$inject = ['$resource', dataSourceServiceName];
 
 angular
 	.module(albumsModuleName)

@@ -2,8 +2,8 @@
 import { default as appModuleName } from './module'
 import { controllerName as homeControllerName, albumsResolver as homeControllerAlbumsResolver } from './home.controller'
 import { controllerName as genresListConrollerName } from '../genres/genres-list.controller'
-import { controllerName as albumsListControllerName, albumsResolver as albumsListControllerResolver } from '../albums/albums-list.controller';
-import { controllerName as albumDetailsControllerName, albumsResolver as albumDetailsResolver } from '../albums/album-details.controller';
+import { controllerName as albumsListControllerName, albumsResolver as albumsListControllerResolver, genreResolver as albumsListGenreResolver } from '../albums/albums-list.controller';
+import { controllerName as albumDetailsControllerName, albumsResolver as albumDetailsResolver, albumIdResolver as albumIdDetailsResolver } from '../albums/album-details.controller';
 
 function config($routeProvider, $locationProvider) {
 	$routeProvider
@@ -12,7 +12,7 @@ function config($routeProvider, $locationProvider) {
 			controller: homeControllerName,
 			controllerAs: 'ctrl',
 			resolve: {
-				albums: homeControllerAlbumsResolver
+				'albums': homeControllerAlbumsResolver
 			}
 		})
 		.when('/albums/genre/:genre', {
@@ -20,7 +20,8 @@ function config($routeProvider, $locationProvider) {
 			controller: albumsListControllerName,
 			controllerAs: 'ctrl',
 			resolve: {
-				albums: albumsListControllerResolver
+				'albums': albumsListControllerResolver,
+				'genre': albumsListGenreResolver
 			}
 		})
 		.when('/album/:id', {
@@ -28,9 +29,9 @@ function config($routeProvider, $locationProvider) {
 			controller: albumDetailsControllerName,
 			controllerAs:'ctrl',
 			resolve: {
-				album: albumDetailsResolver
+				'albums': albumDetailsResolver,
+				'albumId': albumIdDetailsResolver
 			}
-
 		})
 		.when('/genres', {
 			templateUrl: '/genres/genres-list.html',
