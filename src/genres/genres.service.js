@@ -8,9 +8,9 @@ let resource;
 let jsonPath;
 
 class GenresService {
-	constructor($resource, dataSourceService) {
+	constructor($resource, jsonPath) {
 		this.resource = $resource;
-		this.jsonPath = dataSourceService.getDataSource("genres.json");
+		this.jsonPath = jsonPath;
 	}
 	
 	getGenres() {
@@ -21,7 +21,7 @@ class GenresService {
 	}
 }
 
-let factory = ($resource, dataSourceService) => new GenresService($resource, dataSourceService);
+let factory = ($resource, dataSourceService) => new GenresService($resource, dataSourceService.getDataSource("genres.json"));
 factory.$inject = ["$resource", dataSourceServiceName];
 
 angular

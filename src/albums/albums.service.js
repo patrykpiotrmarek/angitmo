@@ -6,9 +6,9 @@ import { serviceName as dataSourceServiceName } from '../data-source/data-source
 const serviceName = "albumsService";
 
 class AlbumsService {
-	constructor($resource, dataSourceService) {
+	constructor($resource, jsonPath) {
 	    this.resource = $resource;
-		this.jsonPath = dataSourceService.getDataSource("albums.json");
+		this.jsonPath = jsonPath;
 	}
 	
 	getTopAlbums(count) {
@@ -38,7 +38,8 @@ class AlbumsService {
 		return albums;
 	}
 }
-let serviceFactory = ($resource, dataSourceService) => new AlbumsService($resource, dataSourceService);
+
+let serviceFactory = ($resource, dataSourceService) => new AlbumsService($resource, dataSourceService.getDataSource("albums.json"));
 serviceFactory.$inject = ['$resource', dataSourceServiceName];
 
 angular
