@@ -1,4 +1,3 @@
-/* global $filter */
 /* global angular */
 import { default as albumsModuleName } from './module';
 import { serviceName as dataSourceServiceName } from '../data-source/data-source.service'

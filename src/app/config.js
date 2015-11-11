@@ -12,7 +12,7 @@ function config($routeProvider, $locationProvider) {
 			controller: homeControllerName,
 			controllerAs: 'ctrl',
 			resolve: {
-				'albums': homeControllerAlbumsResolver
+				albums: homeControllerAlbumsResolver
 			}
 		})
 		.when('/albums/genre/:genre', {
@@ -20,7 +20,7 @@ function config($routeProvider, $locationProvider) {
 			controller: albumsListControllerName,
 			controllerAs: 'ctrl',
 			resolve: {
-				'albums': albumsListControllerResolver
+				albums: albumsListControllerResolver
 			}
 		})
 		.when('/album/:id', {
@@ -28,7 +28,7 @@ function config($routeProvider, $locationProvider) {
 			controller: albumDetailsControllerName,
 			controllerAs:'ctrl',
 			resolve: {
-				'album': albumDetailsResolver,
+				album: albumDetailsResolver,
 			}
 		})
 		.when('/genres', {

@@ -5,12 +5,16 @@ var gutil = require('gulp-util');
 var requirejs = require('gulp-requirejs');
 var uglify = require('gulp-uglify');
 var http = require('gulp-connect');
+var KarmaServer = require('karma').Server;
+var path = require('path');
 
 var paths = {
 	src: 'src',
 	build: 'build',
-	bower: 'bower_components'
+	bower: 'bower_components',
+	karmaConfJs: 'karma.conf.js'
 };
+
 
 gulp.task('clean', function () {
 	return gulp.src(paths.build, { read: false })
@@ -73,6 +77,13 @@ gulp.task('http', function () {
 		root: 'build',
 		livereload: true
 	});
+});
+
+gulp.task('test', function (done) {
+  new KarmaServer({
+    configFile: path.resolve(paths.karmaConfJs),
+    singleRun: true
+  }, done).start();
 });
 
 gulp.task('default', ['clean'], function () {

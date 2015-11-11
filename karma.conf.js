@@ -5,7 +5,7 @@ module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'build',
+    basePath: '',
 
 
     // frameworks to use
@@ -15,8 +15,14 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '**/*spec.js'
+      'bower_components/requirejs/require.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-route/angular-route.js',
+      'bower_components/angular-resource/angular-resource.js',
+      'build/build.js',
+      'tests/**/*.js'
     ],
+    
 
 
     // list of files to exclude
@@ -46,12 +52,13 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
+    browserNoActivityTimeout: 100000,
 
     customLaunchers: {
       'Custom_Chrome': {
@@ -59,21 +66,12 @@ module.exports = function (config) {
         flags: ['--enable-javascript-harmony']
       }
     },
-
+    
     // use the custom launcher
     browsers: ['Custom_Chrome'],
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     // browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-    // Concurrency level
-    // how many browser should be started simultanous
-    concurrency: Infinity
   })
 }
