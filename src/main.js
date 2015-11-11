@@ -1,5 +1,5 @@
 /* global angular */
-/* global requirejs */
+
 import {} from './genres/main';
 import {} from './albums/main';
 import {} from './data-source/main';
